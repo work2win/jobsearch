@@ -38,10 +38,7 @@ public class CompanyController {
 		
 		for(Company company: comp) {
 			Date d = company.getDate();
-			System.out.println(d);
-			String ds = d.toString();
-			
-			
+			String ds = d.toString();			
 		}
 		return companyRepository.findAll();		
 	}
