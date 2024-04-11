@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
 import com.work2win.company.model.Company;
 import com.work2win.company.repository.CompanyRepository;
@@ -38,17 +40,20 @@ public class CompanyController {
 		
 		for(Company company: comp) {
 			Date d = company.getDate();
-			String ds = d.toString();			
+			String ds = d.toString();		
+			
 		}
 		return companyRepository.findAll();		
 	}
 	
+	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("company")
 	public Company addCompany(@Valid @RequestBody Company company) {
 		System.out.println(company);
 		return companyRepository.save(company);	
 	}
 	
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("company/{id}")
 	public ResponseEntity<?>  deleteCompany(@PathVariable Long id){
 		companyRepository.deleteById(id);
